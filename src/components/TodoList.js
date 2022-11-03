@@ -1,11 +1,11 @@
 import Todo from "./Todo";
 
-const TodoList = ({ todos , setTodos}) => {
+const TodoList = ({ todos , setTodos, filteredTodos}) => {
 
   return (
     <div className="todo_container">
       <ul className="todo_list">
-        {todos.map(todo => (
+        {filteredTodos.map(todo => (
             <Todo 
                 setTodos={setTodos}
                 todos={todos}
