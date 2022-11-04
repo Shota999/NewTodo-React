@@ -1,6 +1,6 @@
 import Todo from "./Todo";
 
-const TodoList = ({ todos , setTodos, filteredTodos}) => {
+const TodoList = ({ todos , setTodos, filteredTodos }) => {
 
   return (
     <div className="todo_container">
