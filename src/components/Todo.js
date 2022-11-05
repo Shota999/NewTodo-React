@@ -1,25 +1,32 @@
 const Todo = ({ text, todo, todos, setTodos }) => {
   const deleteHandler = () => {
-    setTodos(todos.filter((el) => el.id !== todo.id))
+    setTodos(todos.filter((el) => el.id !== todo.id));
   };
   const completeHandler = () => {
-    setTodos(todos.map(item => {
-        if(item.id === todo.id){
-            return {
-                ...item, completed: !item.completed
-            }
+    setTodos(
+      todos.map((item) => {
+        if (item.id === todo.id) {
+          return {
+            ...item,
+            completed: !item.completed,
+          };
         }
         return item;
-    }))
-  }
+      })
+    );
+  };
   return (
     <div className="todo">
-      <li className={`todo-item ${todo.completed ? "completed" : ''}`}>{text}</li>
-      <button onClick={completeHandler} className="complete-btn">
-        <i className="fas fa-check"></i>
+      <button onClick={completeHandler} className={`complete-btn ${todo.completed ? "completed" : ""}`}>
+        <span className="check">
+          <i className="fa-solid fa-check"></i>
+        </span>
       </button>
+      <li className={`todo-item ${todo.completed ? "completed" : ""}`}>
+        <p>{text}</p>
+      </li>
       <button onClick={deleteHandler} className="trash-btn">
-        <i className="fas fa-trash"></i>
+        <i className="fa-solid fa-x"></i>
       </button>
     </div>
   );
