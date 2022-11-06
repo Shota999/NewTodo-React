@@ -1,4 +1,4 @@
-const Form = ({ setInputText, todos, setTodos, inputText, setStatus }) => {
+const Form = ({ setInputText, todos, setTodos, inputText }) => {
   const inputTextHandler = (e) => {
     setInputText(e.target.value);
   };
