@@ -58,11 +58,6 @@ function App() {
         inputText={inputText}
         // setStatus={setStatus}
       />
-      <TodoList
-        setTodos={setTodos}
-        todos={todos}
-        filteredTodos={filteredTodos}
-      />
       <div
         onClick={(e) => setStatus(e.target.value)}
         name="todos"
@@ -72,6 +67,12 @@ function App() {
         <option value="completed">Completed</option>
         <option value="uncompleted">Uncompleted</option>
       </div>
+      <TodoList
+        setTodos={setTodos}
+        todos={todos}
+        filteredTodos={filteredTodos}
+      />
+      
     </div>
   );
 }
