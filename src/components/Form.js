@@ -10,10 +10,12 @@ const Form = ({ setInputText, todos, setTodos, inputText }) => {
         ...todos,
         { text: inputText, completed: false, id: Math.random() * 1000 },
       ]);
+      
     } else {
       return alert("Check input");
     }
     setInputText("");
+    localStorage.setItem("todos", JSON.stringify(todos));
   };
 
   return (

@@ -24,7 +24,6 @@ body {
     background-repeat: no-repeat;
     background-size: contain;
     font-family: 'Poppins', sans-serif;
-    min-height: 100vh;
     background-color: #161722;
 
 
@@ -95,20 +94,44 @@ body {
                 }
             }
 
-            option {
-                border: none;
-                background-color: transparent;
-                color: #515267;
-                cursor: pointer;
-                transition: .1s ease-in-out;
-
-                &:hover {
-                    color: #fff;
-                }
-            }
-
             .active {
                 color: red;
+            }
+        }
+
+        section {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background: #25283c;
+            padding: 19px 20px;
+
+            .options{
+                display: flex;
+                gap: 20px;
+                
+                option {
+                    border: none;
+                    background-color: transparent;
+                    color: #515267;
+                    cursor: pointer;
+                    transition: .1s ease-in-out;
+    
+                    &:hover {
+                        color: #fff;
+                    }
+                }
+            }
+            .clear{
+                span{
+                    color: #515267;
+                    cursor: pointer;
+                    transition: .1s ease-in-out;
+    
+                    &:hover {
+                        color: #fff;
+                    }
+                }
             }
         }
 

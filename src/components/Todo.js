@@ -1,6 +1,7 @@
 const Todo = ({ text, todo, todos, setTodos }) => {
   const deleteHandler = () => {
     setTodos(todos.filter((el) => el.id !== todo.id));
+    localStorage.setItem("todos", JSON.stringify(todos));
   };
   const completeHandler = () => {
     setTodos(
@@ -14,6 +15,7 @@ const Todo = ({ text, todo, todos, setTodos }) => {
         return item;
       })
     );
+    localStorage.setItem("todos", JSON.stringify(todos));
   };
   return (
     <div className="todo">

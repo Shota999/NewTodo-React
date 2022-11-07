@@ -12,15 +12,14 @@ function App() {
   // ერთხელ გაშვება
 
   useEffect(() => {
-    getLocalTodos();
+    if(localStorage.getItem("todos")){
+      const todoLocal = JSON.parse(localStorage.getItem("todos"));
+      setTodos(todoLocal);
+      console.log(todoLocal);
+    }
   }, []);
 
   useEffect(() => {
-    filterHandler();
-    saveLocalTodos();
-  }, [todos, status]);
-
-  const filterHandler = () => {
     switch (status) {
       case "completed":
         setFilteredTodos(todos.filter((todo) => todo.completed === true));
@@ -32,20 +31,29 @@ function App() {
         setFilteredTodos(todos);
         break;
     }
-  };
-  const saveLocalTodos = () => {
-    localStorage.setItem("todos", JSON.stringify(todos));
-  };
-  const getLocalTodos = () => {
-    if (localStorage.getItem("todos") === null) {
-      localStorage.setItem("todos", JSON.stringify([]));
-    } else {
-      let todoLocal = JSON.parse(localStorage.getItem("todos"));
-      setTodos(todoLocal);
-      console.log(todoLocal);
-    }
-  };
+    // saveLocalTodos();
+  }, [todos, status]);
 
+  // const filterHandler = () => {
+    
+  // };
+  // const saveLocalTodos = () => {
+
+  // };
+  // const getLocalTodos = () => {
+  //   if (localStorage.getItem("todos") === null) {
+  //     localStorage.setItem("todos", JSON.stringify([]));
+  //   } else {
+  //     let todoLocal = JSON.parse(localStorage.getItem("todos"));
+  //     setTodos(todoLocal);
+  //     console.log(todoLocal);
+  //   }
+  // };
+
+  const clearHandle = () => {
+    setTodos([]);
+    localStorage.removeItem("todos");
+  };
   return (
     <div className="App">
       <header>
@@ -56,23 +64,27 @@ function App() {
         setTodos={setTodos}
         setInputText={setInputText}
         inputText={inputText}
-        // setStatus={setStatus}
       />
-      <div
-        onClick={(e) => setStatus(e.target.value)}
-        name="todos"
-        className="container"
-      >
-        <option value="all">All</option>
-        <option value="completed">Completed</option>
-        <option value="uncompleted">Uncompleted</option>
-      </div>
+      <section>
+        <div
+          onClick={(e) => setStatus(e.target.value)}
+          name="todos"
+          className="options"
+        >
+          <option value="all">All</option>
+          <option value="completed">Completed</option>
+          <option value="uncompleted">Uncompleted</option>
+        </div>
+        <div className="clear" onClick={clearHandle}>
+          <span>Clear All</span>
+        </div>
+      </section>
+
       <TodoList
         setTodos={setTodos}
         todos={todos}
         filteredTodos={filteredTodos}
       />
-      
     </div>
   );
 }
