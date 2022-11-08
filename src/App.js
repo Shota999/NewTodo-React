@@ -12,7 +12,7 @@ function App() {
   // ერთხელ გაშვება
 
   useEffect(() => {
-    if(localStorage.getItem("todos")){
+    if (localStorage.getItem("todos")) {
       const todoLocal = JSON.parse(localStorage.getItem("todos"));
       setTodos(todoLocal);
     }
@@ -48,6 +48,9 @@ function App() {
         inputText={inputText}
       />
       <section>
+        <div className="length">
+          <span>Active Tasks: {todos.length}</span>
+        </div>
         <div
           onClick={(e) => setStatus(e.target.value)}
           name="todos"

@@ -15,7 +15,7 @@ const Todo = ({ text, todo, todos, setTodos }) => {
     //     return item;
     //   })
     // );
-    setTodos((todo) => {
+    setTodos((prev1) => {
       const newList = todos.map((item) => {
         if (item.id === todo.id) {
           return {
@@ -25,8 +25,8 @@ const Todo = ({ text, todo, todos, setTodos }) => {
         }
       });
       return newList;
-    })
-    
+    });
+
     localStorage.setItem("todos", JSON.stringify(todos));
   };
   return (
