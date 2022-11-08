@@ -15,7 +15,6 @@ function App() {
     if(localStorage.getItem("todos")){
       const todoLocal = JSON.parse(localStorage.getItem("todos"));
       setTodos(todoLocal);
-      console.log(todoLocal);
     }
   }, []);
 
@@ -31,24 +30,7 @@ function App() {
         setFilteredTodos(todos);
         break;
     }
-    // saveLocalTodos();
   }, [todos, status]);
-
-  // const filterHandler = () => {
-    
-  // };
-  // const saveLocalTodos = () => {
-
-  // };
-  // const getLocalTodos = () => {
-  //   if (localStorage.getItem("todos") === null) {
-  //     localStorage.setItem("todos", JSON.stringify([]));
-  //   } else {
-  //     let todoLocal = JSON.parse(localStorage.getItem("todos"));
-  //     setTodos(todoLocal);
-  //     console.log(todoLocal);
-  //   }
-  // };
 
   const clearHandle = () => {
     setTodos([]);

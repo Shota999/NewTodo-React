@@ -1,21 +1,34 @@
-const Form = ({ setInputText, todos, setTodos, inputText }) => {
+import { useState } from "react";
+
+let timeOute = null;
+
+const Form = ({ setInputText, setTodos, inputText }) => {
+  const [showPopup, setShowPopup] = useState(false);
+  
   const inputTextHandler = (e) => {
     setInputText(e.target.value);
   };
   const submitTodoHandler = (e) => {
     e.preventDefault();
 
-    if (inputText.length >= 1) {
-      setTodos([
-        ...todos,
-        { text: inputText, completed: false, id: Math.random() * 1000 },
-      ]);
-      
-    } else {
-      return alert("Check input");
+    if (!inputText) {
+      clearInterval(timeOute);
+      timeOute = setTimeout(() => {
+        setShowPopup(false);
+      }, 1000);
+      return setShowPopup(true);
     }
+
+    setTodos((prev) => {
+      const list = [
+        ...prev,
+        { text: inputText, completed: false, id: Math.random() * 1000 },
+      ];
+      localStorage.setItem("todos", JSON.stringify(list));
+
+      return list;
+    });
     setInputText("");
-    localStorage.setItem("todos", JSON.stringify(todos));
   };
 
   return (
@@ -36,6 +49,7 @@ const Form = ({ setInputText, todos, setTodos, inputText }) => {
           placeholder="Create a new Todo..."
         />
       </div>
+      {showPopup && <div className="popup">Check input</div>}
     </form>
   );
 };

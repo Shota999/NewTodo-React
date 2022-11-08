@@ -4,22 +4,37 @@ const Todo = ({ text, todo, todos, setTodos }) => {
     localStorage.setItem("todos", JSON.stringify(todos));
   };
   const completeHandler = () => {
-    setTodos(
-      todos.map((item) => {
+    // setTodos(
+    //   todos.map((item) => {
+    //     if (item.id === todo.id) {
+    //       return {
+    //         ...item,
+    //         completed: !item.completed,
+    //       };
+    //     }
+    //     return item;
+    //   })
+    // );
+    setTodos((todo) => {
+      const newList = todos.map((item) => {
         if (item.id === todo.id) {
           return {
             ...item,
             completed: !item.completed,
           };
         }
-        return item;
-      })
-    );
+      });
+      return newList;
+    })
+    
     localStorage.setItem("todos", JSON.stringify(todos));
   };
   return (
     <div className="todo">
-      <button onClick={completeHandler} className={`complete-btn ${todo.completed ? "completed" : ""}`}>
+      <button
+        onClick={completeHandler}
+        className={`complete-btn ${todo.completed ? "completed" : ""}`}
+      >
         <span className="check">
           <i className="fa-solid fa-check"></i>
         </span>
