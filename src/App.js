@@ -48,6 +48,7 @@ function App() {
         <h1>Todo</h1>
         <button
           className="theme-toggle"
+          aria-label={`Switch to ${theme === "dark" ? "light" : "dark"} mode`}
           onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
         >
           <i
