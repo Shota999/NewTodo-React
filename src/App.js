@@ -8,8 +8,14 @@ function App() {
   const [todos, setTodos] = useState([]);
   const [status, setStatus] = useState("all");
   const [filteredTodos, setFilteredTodos] = useState([]);
+  const [theme, setTheme] = useState(
+    () => localStorage.getItem("theme") || "dark",
+  );
 
-  // ერთხელ გაშვება
+  useEffect(() => {
+    document.body.className = theme;
+    localStorage.setItem("theme", theme);
+  }, [theme]);
 
   useEffect(() => {
     if (localStorage.getItem("todos")) {
@@ -40,6 +46,14 @@ function App() {
     <div className="App">
       <header>
         <h1>Todo</h1>
+        <button
+          className="theme-toggle"
+          onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
+        >
+          <i
+            className={`fa-solid ${theme === "dark" ? "fa-sun" : "fa-moon"}`}
+          ></i>
+        </button>
       </header>
       <Form
         todos={todos}
@@ -49,17 +63,18 @@ function App() {
       />
       <section>
         <div className="length">
-          <span>Active Tasks: {todos.length}</span>
+          <span>Active Tasks: {todos.filter((t) => !t.completed).length}</span>
         </div>
-        <div
-          onClick={(e) => setStatus(e.target.value)}
+        <select
+          value={status}
+          onChange={(e) => setStatus(e.target.value)}
           name="todos"
           className="options"
         >
           <option value="all">All</option>
           <option value="completed">Completed</option>
           <option value="uncompleted">Uncompleted</option>
-        </div>
+        </select>
         <div className="clear" onClick={clearHandle}>
           <span>Clear All</span>
         </div>

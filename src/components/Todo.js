@@ -1,33 +1,18 @@
 const Todo = ({ text, todo, todos, setTodos }) => {
   const deleteHandler = () => {
-    setTodos(todos.filter((el) => el.id !== todo.id));
-    localStorage.setItem("todos", JSON.stringify(todos));
+    const filtered = todos.filter((el) => el.id !== todo.id);
+    setTodos(filtered);
+    localStorage.setItem("todos", JSON.stringify(filtered));
   };
   const completeHandler = () => {
-    // setTodos(
-    //   todos.map((item) => {
-    //     if (item.id === todo.id) {
-    //       return {
-    //         ...item,
-    //         completed: !item.completed,
-    //       };
-    //     }
-    //     return item;
-    //   })
-    // );
-    setTodos((prev1) => {
-      const newList = todos.map((item) => {
-        if (item.id === todo.id) {
-          return {
-            ...item,
-            completed: !item.completed,
-          };
-        }
-      });
-      return newList;
+    const updated = todos.map((item) => {
+      if (item.id === todo.id) {
+        return { ...item, completed: !item.completed };
+      }
+      return item;
     });
-
-    localStorage.setItem("todos", JSON.stringify(todos));
+    setTodos(updated);
+    localStorage.setItem("todos", JSON.stringify(updated));
   };
   return (
     <div className="todo">

@@ -1,4 +1,4 @@
-import { useState } from "react";
+﻿import { useState } from "react";
 
 let timeOute = null;
 
@@ -22,7 +22,7 @@ const Form = ({ setInputText, setTodos, inputText }) => {
     setTodos((prev) => {
       const list = [
         ...prev,
-        { text: inputText, completed: false, id: Math.random() * 1000 },
+        { text: inputText, completed: false, id: crypto.randomUUID() },
       ];
       localStorage.setItem("todos", JSON.stringify(list));
 
@@ -31,6 +31,7 @@ const Form = ({ setInputText, setTodos, inputText }) => {
     setInputText("");
   };
 
+  
   return (
     <form>
       <div className="container add">
